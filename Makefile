@@ -5,14 +5,14 @@ CFLAGS = -g -Wall -O3
 LDFLAGS =
 LDLIBS =
 
-sorting: sorting.o 
+sorting: sorting.o
 
-sorting.o: sorting.c
+cppsorting: cppsorting.o
 
 
 .PHONY: clean
 clean:
-	rm -f *.o a.out core sorting
+	rm -f *.o a.out core sorting cppsorting
 
 .PHONY: all
-all: clean sorting
+all: clean sorting cppsorting
