@@ -1,9 +1,10 @@
 
 CC = gcc
 CFLAGS = -g -Wall -O3
+CXXFLAGS = $$(pkg-config --cflags x86simdsortcpp)
 
 LDFLAGS =
-LDLIBS =
+LDLIBS = $$(pkg-config --libs x86simdsortcpp)
 
 sorting: sorting.o
 
