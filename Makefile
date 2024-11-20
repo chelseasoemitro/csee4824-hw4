@@ -7,7 +7,7 @@ LDLIBS =
 
 sorting: sorting.o 
 
-sorting.o: sorting.c
+sorting.o: sorting.c quicksort.h
 
 
 .PHONY: clean
