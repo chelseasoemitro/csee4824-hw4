@@ -1,6 +1,7 @@
 
 CC = gcc
 CFLAGS = -g -Wall -O3
+CXXFLAGS =
 
 LDFLAGS =
 LDLIBS =
