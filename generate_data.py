@@ -56,25 +56,6 @@ def write_integers(argv):
 	plt.tight_layout()
 	plt.savefig(f'{distribution}{output_suffix}_histplot.png')
 	'''
-	
-	'''
-	with open(f'{distribution}_data', 'wb') as output_file:
-		values = name_to_generator[distribution]()
-		values = map(lambda val: int(val).to_bytes(4, signed=False), values)
-		for i, val in enumerate(values):
-			output_file.write(val)
-
-	'''
-
-	'''
-	# test of reading these bytes in python (we can just fread them from C)
-	# shouldn't have to do any endianness conversions
-	with open(f'{distribution}_data', 'rb') as input_file:
-		binary_ints = input_file.read()
-		for i in range(0,len(binary_ints), 4):
-			val = int.from_bytes(binary_ints[i : i + 4], signed=False)
-			print(val)
-	'''
 
 
 if __name__ == '__main__':
