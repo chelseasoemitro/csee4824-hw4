@@ -27,14 +27,16 @@ def write_integers(argv):
 	values = []
 	for i in range(num_kb):
 		new_values = name_to_generator[distribution]()
+		# some outliers are outside unsigned 32-bit range, manually overflow them
+		new_values = map(lambda val: abs(int(val)) % UINT32_MAX, new_values)
 		if sorting == 'partial':
-			new_values.sort()
+			new_values = sorted(new_values)
 		values.extend(new_values)
 	
 	if sorting == 'full':
 		values.sort()
 
-	byte_values = map(lambda val: (int(val) % UINT32_MAX).to_bytes(4, signed=False), values)
+	byte_values = map(lambda val: val.to_bytes(4, signed=False), values)
 
 	output_filename = f'{distribution}_data'
 	output_suffix = f'_{sorting}_sorting' if sorting != 'none' else '_no_sorting'
@@ -43,8 +45,9 @@ def write_integers(argv):
 		for val in byte_values:
 			output_file.write(val)
 
-	'''
+
 	# charts to include in writeup about our data perhaps
+	'''
 	sns.barplot(values)
 	plt.tight_layout()
 	plt.savefig(f'{distribution}{output_suffix}_barplot.png')
