@@ -58,7 +58,7 @@ def sort_integers(argv):
 
 
 	name_to_algorithm = {
-		'quicksort': quicksort_iterative, # our data is too big for python recursive quicksort
+		'quicksort': quicksort_iterative, # our data is too big for pysort recursive quicksort
 		'radixsort': sorter.radixSort,
 		'timsort': sorted,
 	}
