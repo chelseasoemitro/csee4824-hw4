@@ -5,9 +5,9 @@ CFLAGS = -g -Wall -O3
 LDFLAGS =
 LDLIBS =
 
-sorting: sorting.o 
+c_sorting: c_sorting.o quicksort.c radixsort.c timsort.c
 
-sorting.o: sorting.c
+c_sorting.o: sorting.c
 
 
 .PHONY: clean
