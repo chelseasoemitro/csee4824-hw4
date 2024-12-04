@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
-#include "sorting.h"
+#include "c_algorithms/sorting.h"
 
 long get_file_size(const char *filename) {
     struct stat file_status;
