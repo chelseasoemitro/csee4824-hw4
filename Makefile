@@ -6,10 +6,11 @@ CXXFLAGS =
 LDFLAGS =
 LDLIBS =
 
-sorting: sorting.o 
+sorting: sorting.o timsort.o
 
-sorting.o: sorting.c
+sorting.o: sorting.c timsort.h
 
+timsort.o: timsort.c timsort.h
 
 .PHONY: clean
 clean:
