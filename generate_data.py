@@ -8,13 +8,14 @@ UINT32_MAX = 1 << 32
 ONE_KB_OF_INTS = 1000 # lower this for plots that don't kill matplotlib
 
 def write_integers(argv):
-	if len(argv) != 4 or argv[3].lower() not in {'none', 'partial', 'full'}:
-		print(f'usage: python3 {argv[0]} [number of KB] [distribution] [sorting {{none, partial, full}}]', file=sys.stderr)
+	if len(argv) != 5 or argv[3].lower() not in {'none', 'partial', 'full'}:
+		print(f'usage: python3 {argv[0]} [number of KB] [distribution] [sorting {{none, partial, full}}] [/path/to/output/dir]', file=sys.stderr)
 		exit(1)
 
 	num_kb = int(argv[1])
 	distribution = argv[2]
 	sorting = argv[3].lower()
+	output_dir = argv[4]
 
 	rng = np.random.default_rng(0)
 
@@ -38,7 +39,7 @@ def write_integers(argv):
 
 	byte_values = map(lambda val: val.to_bytes(4, signed=False), values)
 
-	output_filename = f'{distribution}_data'
+	output_filename = f'{output_dir}/{distribution}_data'
 	output_suffix = f'_{sorting}_sorting' if sorting != 'none' else '_no_sorting'
 
 	with open(output_filename + output_suffix, 'wb') as output_file:
