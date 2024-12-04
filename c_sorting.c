@@ -14,6 +14,15 @@ long get_file_size(const char *filename) {
     return file_status.st_size;
 }
 
+int check_if_sorted(uint32_t sorted_arr[], size_t length) {
+    for (int i = 1; i < length; i++) {
+        if (sorted_arr[i-1] > sorted_arr[i]) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
 uint32_t* read_integers(const char* filename, size_t* count) {
     int file_size = get_file_size(filename);
 
@@ -59,7 +68,7 @@ int main(int argc, char **argv) {
 		exit(1);
     }
 
-    char *algorithm_name = argv[2];
+    char *algorithm_name = argv[1];
 
     // Parse integer file
     size_t num_integers;
@@ -69,11 +78,11 @@ int main(int argc, char **argv) {
 
     // Sort integers
     uint32_t *result = NULL;
-    if (strcmp(algorithm_name, "quicksort")) {
+    if (strcmp(algorithm_name, "quicksort") == 0) {
         result = quick_sort(integers, num_integers);
-    } else if (strcmp(algorithm_name, "radixsort")) {
+    } else if (strcmp(algorithm_name, "radixsort") == 0) {
         result = radix_sort(integers, num_integers);
-    } else if (strcmp(algorithm_name, "timsort")) {
+    } else if (strcmp(algorithm_name, "timsort") == 0) {
         result = tim_sort(integers, num_integers);
     } else {
         fprintf(stderr, "Unsupported sorting algorithm %s provided.", algorithm_name);
@@ -81,5 +90,10 @@ int main(int argc, char **argv) {
     }
 
     print_arr(result, num_integers);
+    if (check_if_sorted(result, num_integers)) {
+        printf("sorted\n");
+    } else {
+        printf("not sorted\n");
+    }
     return 0;
 }
