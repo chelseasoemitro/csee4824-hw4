@@ -39,10 +39,10 @@ def write_integers(argv):
 
 	byte_values = map(lambda val: val.to_bytes(4, signed=False), values)
 
-	output_filename = f'{output_dir}/{distribution}_data'
-	output_suffix = f'_{sorting}_sorting' if sorting != 'none' else '_no_sorting'
+	output_filename = f'{output_dir}/{distribution}_{num_kb}KB'
+	sorting_suffix = f'_{sorting}_sorting' if sorting != 'none' else '_no_sorting'
 
-	with open(output_filename + output_suffix, 'wb') as output_file:
+	with open(output_filename + sorting_suffix, 'wb') as output_file:
 		for val in byte_values:
 			output_file.write(val)
 
