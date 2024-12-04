@@ -20,7 +20,12 @@ typedef struct {
 } Timsort;
 
 int intCompare(const void *a, const void *b) {
-    return (*(int *)a) - (*(int *)b);
+    uint32_t val_a = *(uint32_t *)a;
+    uint32_t val_b = *(uint32_t *)b;
+
+    if (val_a < val_b) return -1;
+    if (val_a > val_b) return 1;
+    return 0;
 }
 
 size_t minRunLength(size_t n) {
