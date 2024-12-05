@@ -19,7 +19,6 @@ for num_kb in "${sizes[@]}"; do
             echo -en "running [$cmd]... "
             eval $cmd
             echo "done"
-            exit 0
         done
     done
 done
