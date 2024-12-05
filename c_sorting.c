@@ -14,15 +14,6 @@ long get_file_size(const char *filename) {
     return file_status.st_size;
 }
 
-int check_if_sorted(uint32_t sorted_arr[], size_t length) {
-    for (int i = 1; i < length; i++) {
-        if (sorted_arr[i-1] > sorted_arr[i]) {
-            return 0;
-        }
-    }
-    return 1;
-}
-
 uint32_t* read_integers(const char* filename, size_t* count) {
     int file_size = get_file_size(filename);
 
@@ -90,10 +81,5 @@ int main(int argc, char **argv) {
     }
 
     print_arr(result, num_integers);
-    if (check_if_sorted(result, num_integers)) {
-        printf("sorted\n");
-    } else {
-        printf("not sorted\n");
-    }
     return 0;
 }
