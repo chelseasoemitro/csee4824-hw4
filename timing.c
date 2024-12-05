@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "timing.h"
 
 inline void mfence() {
@@ -17,12 +16,3 @@ static inline int64_t time_stop(void) {
     asm volatile("rdtscp" : "=a" (a), "=d" (d));
     asm volatile("cpuid" ::: "%rax", "%rbx", "%rcx", "%rdx");
     return ((uint64_t)a) | (((uint64_t)d) << 32);
-}
-
-int main() {
-    printf("testing...\n");
-    int start = time_start();
-    printf("running...\n");
-    int end = time_stop();
-    printf("final time: %d, %d, %d\n", end, start, end-start);
-}
