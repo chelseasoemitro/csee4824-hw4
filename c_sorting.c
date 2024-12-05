@@ -4,6 +4,7 @@
 #include <string.h>
 #include <sys/stat.h>
 #include "c_algorithms/sorting.h"
+#include "timing.h"
 
 long get_file_size(const char *filename) {
     struct stat file_status;
@@ -55,7 +56,7 @@ void print_arr(uint32_t arr[], int size) {
 
 int main(int argc, char **argv) {
     if (argc != 3) {
-        fprintf(stderr, "usage: %s [sorting algorithm {supported_sorts}] [integer file]", argv[0]);
+        fprintf(stderr, "usage: %s [sorting algorithm {supported_sorts}] [integer file]\n", argv[0]);
 		exit(1);
     }
 
@@ -69,17 +70,25 @@ int main(int argc, char **argv) {
 
     // Sort integers
     uint32_t *result = NULL;
+    int start, end;
     if (strcmp(algorithm_name, "quicksort") == 0) {
+        start = time_start();
         result = quick_sort(integers, num_integers);
+        end = time_stop();
     } else if (strcmp(algorithm_name, "radixsort") == 0) {
+        start = time_start();
         result = radix_sort(integers, num_integers);
+        end = time_stop();
     } else if (strcmp(algorithm_name, "timsort") == 0) {
+        start = time_start();
         result = tim_sort(integers, num_integers);
+        end = time_stop();
     } else {
         fprintf(stderr, "Unsupported sorting algorithm %s provided.", algorithm_name);
         exit(1);
     }
 
-    print_arr(result, num_integers);
+    printf("Number of ticks: %d\n", end-start);
+    // print_arr(result, num_integers);
     return 0;
 }

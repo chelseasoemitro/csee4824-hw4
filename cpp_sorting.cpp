@@ -5,6 +5,7 @@
 #include <cstring>
 #include <sys/stat.h>
 #include "cpp_algorithms/sorting.hpp"
+#include "timing.h"
 
 long get_file_size(const std::string& filename) {
     struct stat file_status;
@@ -65,17 +66,25 @@ int main(int argc, char** argv) {
 
     // Sort integers
     std::vector<uint32_t> result;
+    int start, end;
     if (algorithm_name == "quicksort") {
+        start = time_start(); 
         result = quick_sort(integers, integers.size());
+        end = time_stop();
     } else if (algorithm_name == "radixsort") {
+        start = time_start();
         result = radix_sort(integers, integers.size());
+        end = time_stop();
     } else if (algorithm_name == "timsort") {
+        start = time_start();
         result = tim_sort(integers, integers.size());
+        end = time_stop();
     } else {
         std::cerr << "Unsupported sorting algorithm: " << algorithm_name << std::endl;
         return 1;
     }
 
-    print_arr(result);
+    std::cout << "Number of ticks: " << end-start << "\n";
+    // print_arr(result);
     return 0;
 }
