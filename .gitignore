@@ -1,6 +1,4 @@
-*.png
 venv
-*_data_*
 *.log
 *.o
 *.out
