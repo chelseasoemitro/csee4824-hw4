@@ -7,6 +7,11 @@ sorting_options=('none' 'partial' 'full')
 
 output_dir=$1
 
+if [ "$#" -ne 1 ]; then
+	echo "Usage: $0 [path/to/output/dir]" >&2
+	exit 1
+fi
+
 for num_kb in "${sizes[@]}"; do
     for dist in "${distributions[@]}"; do
         for sorting in "${sorting_options[@]}"; do
