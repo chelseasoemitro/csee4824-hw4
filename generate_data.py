@@ -41,22 +41,21 @@ def write_integers(argv):
 
 	output_filename = f'{output_dir}/{distribution}_{num_kb}KB'
 	sorting_suffix = f'_{sorting}_sorting' if sorting != 'none' else '_no_sorting'
+	output_filename += sorting_suffix
 
-	with open(output_filename + sorting_suffix, 'wb') as output_file:
+	with open(output_filename, 'wb') as output_file:
 		for val in byte_values:
 			output_file.write(val)
 
 
 	# charts to include in writeup about our data perhaps
-	'''
 	sns.barplot(values)
 	plt.tight_layout()
-	plt.savefig(f'{distribution}{output_suffix}_barplot.png')
+	plt.savefig(f'{output_filename}_barplot.png')
 	plt.clf()
 	sns.histplot(values)
 	plt.tight_layout()
-	plt.savefig(f'{distribution}{output_suffix}_histplot.png')
-	'''
+	plt.savefig(f'{output_filename}_histplot.png')
 
 
 if __name__ == '__main__':
