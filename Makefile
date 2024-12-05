@@ -11,6 +11,10 @@ c_sorting: c_sorting.o c_algorithms/quicksort.c c_algorithms/radixsort.c c_algor
 
 c_sorting.o: sorting.c 
 
+timing: timing.o
+
+timing.o: timing.c
+
 cpp_sorting: cpp_sorting.o cpp_algorithms/quicksort.cpp cpp_algorithms/timsort.cpp cpp_algorithms/radixsort.cpp
 	$(CXX) $(CXXFLAGS) cpp_algorithms/quicksort.cpp cpp_algorithms/timsort.cpp cpp_algorithms/radixsort.cpp -o cpp_sorting cpp_sorting.o
 
