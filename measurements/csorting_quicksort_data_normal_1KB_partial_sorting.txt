@@ -1,0 +1,8 @@
+L1 Data (config)	 Size: 32(KB)	 Line size: 64(B)	 Associativity: 8	 Num sets: 64
+
+Number of ticks: 1123953491
+
+L1 Data (hit/miss)	 Instructions: 377865	 References: 165546	 Miss rate: 0.0106	 MPKI: 4.6657
+       Total         Cold     Capacity      Mapping  Replacement 
+        1763         1499            0           13          251 
+./cache_sim/pin/pin -t cache_sim/cache_simulator/obj-intel64/cache.so -- ./c_sorting quicksort ./data/normal_1KB_partial_sorting

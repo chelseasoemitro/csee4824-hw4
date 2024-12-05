@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# 1KB 10KB 100KB ... 100MB 1GB
-# sizes=(1 10 100 1000 10000 100000 1000000)
-sizes=(100000 1000000)
+# 1KB 10KB 100KB ... 10MB
+sizes=(1 10 100 1000 10000)
 distributions=('uniform' 'normal' 'lognormal')
 sorting_options=('none' 'partial' 'full')
 
