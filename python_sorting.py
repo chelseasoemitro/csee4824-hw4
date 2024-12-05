@@ -1,5 +1,6 @@
 from sorting_techniques import pysort
 import sys
+from ctypes import CDLL, c_uint64
 
 # pulled from google
 def quicksort_iterative(arr):
@@ -41,6 +42,14 @@ def read_integers(filename):
 
 	return integers
 
+def load_timing_library():
+	timing_lib = CDLL('./timing.so')
+
+	timing_lib.time_start.restype = c_uint64
+	timing_lib.time_stop.restype = c_uint64
+
+	return timing_lib
+
 supported_sorts = {'timsort', 'radixsort', 'quicksort'}
 
 def sort_integers(argv):
@@ -49,6 +58,7 @@ def sort_integers(argv):
 		print(f'usage: python3 {argv[0]} [sorting algorithm {supported_sorts}] [integer file]', file=sys.stderr)
 		exit(1)
 
+	timing_lib = load_timing_library()
 
 	algorithm_name = argv[1].lower()
 
@@ -63,8 +73,11 @@ def sort_integers(argv):
 		'timsort': sorted,
 	}
 
+	start = timing_lib.time_start()
 	result = name_to_algorithm[algorithm_name](integers)
-	print(result)
+	end = timing_lib.time_stop()
+	print(f'Number of ticks: {end - start}')
+	# print(result)
 
 
 if __name__ == '__main__':

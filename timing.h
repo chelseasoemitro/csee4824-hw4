@@ -7,8 +7,8 @@
 extern "C" {
 #endif
 
-int64_t time_start(void);
-int64_t time_stop(void);
+uint64_t time_start(void);
+uint64_t time_stop(void);
 
 #ifdef __cplusplus
 }
