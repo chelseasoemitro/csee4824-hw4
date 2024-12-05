@@ -49,6 +49,7 @@ def write_integers(argv):
 
 
 	# charts to include in writeup about our data perhaps
+	'''
 	sns.barplot(values)
 	plt.tight_layout()
 	plt.savefig(f'{output_filename}_barplot.png')
@@ -56,6 +57,7 @@ def write_integers(argv):
 	sns.histplot(values)
 	plt.tight_layout()
 	plt.savefig(f'{output_filename}_histplot.png')
+	'''
 
 
 if __name__ == '__main__':

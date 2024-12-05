@@ -70,7 +70,7 @@ int main(int argc, char **argv) {
 
     // Sort integers
     uint32_t *result = NULL;
-    int start, end;
+    uint64_t start, end;
     if (strcmp(algorithm_name, "quicksort") == 0) {
         start = time_start();
         result = quick_sort(integers, num_integers);
@@ -88,7 +88,7 @@ int main(int argc, char **argv) {
         exit(1);
     }
 
-    printf("Number of ticks: %d\n", end-start);
+    printf("Number of ticks: %lu\n", end-start);
     // print_arr(result, num_integers);
     return 0;
 }

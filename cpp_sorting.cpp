@@ -66,7 +66,7 @@ int main(int argc, char** argv) {
 
     // Sort integers
     std::vector<uint32_t> result;
-    int start, end;
+    uint64_t start, end;
     if (algorithm_name == "quicksort") {
         start = time_start(); 
         result = quick_sort(integers, integers.size());
