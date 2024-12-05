@@ -7,19 +7,24 @@ CXXFLAGS = -g -Wall -O3 -std=c++17
 LDFLAGS =
 LDLIBS =
 
-c_sorting: c_sorting.o c_algorithms/quicksort.c c_algorithms/radixsort.c c_algorithms/timsort.c
+c_sorting: c_sorting.o timing.o c_algorithms/quicksort.o c_algorithms/radixsort.o c_algorithms/timsort.o
 
-c_sorting.o: sorting.c 
+c_sorting.o: c_sorting.c c_algorithms/sorting.h timing.h
 
-timing: timing.o
+c_algorithms/quicksort.o: c_algorithms/quicksort.c c_algorithms/sorting.h
 
-timing.o: timing.c
+c_algorithms/radixsort.o: c_algorithms/radixsort.c c_algorithms/sorting.h
 
-cpp_sorting: cpp_sorting.o cpp_algorithms/quicksort.cpp cpp_algorithms/timsort.cpp cpp_algorithms/radixsort.cpp
-	$(CXX) $(CXXFLAGS) cpp_algorithms/quicksort.cpp cpp_algorithms/timsort.cpp cpp_algorithms/radixsort.cpp -o cpp_sorting cpp_sorting.o
+c_algorithms/timsort.o: c_algorithms/timsort.c c_algorithms/sorting.h
 
-cpp_sorting.o: cpp_sorting.cpp
+cpp_sorting: cpp_sorting.o timing.o cpp_algorithms/quicksort.o cpp_algorithms/timsort.o cpp_algorithms/radixsort.o
+	$(CXX) $(CXXFLAGS) timing.o cpp_algorithms/quicksort.o cpp_algorithms/timsort.o cpp_algorithms/radixsort.o -o cpp_sorting cpp_sorting.o
+
+cpp_sorting.o: cpp_sorting.cpp timing.h
 	$(CXX) $(CXXFLAGS) -c cpp_sorting.cpp -o cpp_sorting.o
+
+timing.o: timing.c timing.h
+
 
 .PHONY: clean
 clean:

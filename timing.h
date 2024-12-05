@@ -3,7 +3,15 @@
 
 #include <stdint.h>
 
-static inline int64_t time_start(void);
-static inline int64_t time_stop(void);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+int64_t time_start(void);
+int64_t time_stop(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // TIMING_H
